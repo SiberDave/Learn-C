@@ -13,9 +13,9 @@ int main() {
     char first[10];
     char last[10];
     printf("Enter your first name : ");
-    scanf("%s", first); // scanf used for asking user input and put it on variable.
+    scanf("%s", &first); // scanf used for asking user input and put it on variable.
     printf("Enter your last name : ");
-    scanf("%s", last);
+    scanf("%s", &last);
     printf("Hello, %s %s!\n", first, last);
     return 0;
 }
