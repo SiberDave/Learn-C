@@ -48,7 +48,7 @@ int main(void){
 
     mean_score = total_score / numberScore;
 
-    printf("%2f is the average.\n", mean_score);
+    printf("%.2f is the average.\n", mean_score);
 
     free(score_list);
 
