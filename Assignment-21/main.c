@@ -28,6 +28,7 @@ int main(void){
     engineering_dept.employee2.job_title = malloc(initial * sizeof(char));
 
     struct employee *employee = &engineering_dept.employee1;
+    // created as pointer so user can access employee1 attribute indirectly.
 
     for (int i = 0; i < 2; i++)
     {
@@ -66,7 +67,7 @@ int main(void){
     free(engineering_dept.employee1.first_name);
     free(engineering_dept.employee1.last_name);
     free(engineering_dept.employee1.job_title);
-    
+
     free(engineering_dept.employee2.first_name);
     free(engineering_dept.employee2.last_name);
     free(engineering_dept.employee2.job_title);
