@@ -5,7 +5,6 @@
 // programs, but instead are using wrapper functions defined in libc for our purposes.
 
 #include <stdio.h>
-#include <unistd.h>
 #include <fcntl.h>
 
 int main(){
